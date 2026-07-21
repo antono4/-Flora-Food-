@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop Premium Flora - Koleksi tanaman botani eksklusif dan terrarium handmade.">
+    <title>Shop - Premium Flora & Food</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0a2316',
+                        'brand-green': '#1b432a',
+                        'brand-light': '#8fb996',
+                        'brand-text': '#e2e8f0',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-light/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="text-2xl font-serif font-bold tracking-wider text-white">
+                    <span class="text-brand-light">EG</span>GAZO
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link text-gray-300 hover:text-brand-light transition">Home</a>
+                    <a href="shop.html" class="nav-link active text-brand-light font-medium">Shop</a>
+                    <a href="about.html" class="nav-link text-gray-300 hover:text-brand-light transition">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-brand-light transition">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-300 hover:text-white transition" aria-label="Search">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <button class="border border-brand-light/30 text-brand-light px-4 py-2 rounded-full hover:bg-brand-light hover:text-brand-dark transition text-sm" id="cart-btn">
+                        Cart (<span id="cart-count">0</span>)
+                    </button>
+                    <button class="md:hidden text-gray-300" id="mobile-menu-btn" aria-label="Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="md:hidden hidden mt-4 pb-4 border-t border-brand-light/10 pt-4" id="mobile-menu">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-300 hover:text-brand-light transition">Home</a>
+                    <a href="shop.html" class="text-brand-light font-medium">Shop</a>
+                    <a href="about.html" class="text-gray-300 hover:text-brand-light transition">About</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-brand-light transition">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="pt-24 pb-12 md:pt-32 md:pb-16">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">Our Shop</h1>
+            <p class="text-gray-400 max-w-xl mx-auto">Discover our curated collection of premium botanical specimens</p>
+        </div>
+    </header>
+
+    <!-- Categories Filter -->
+    <section class="pb-8">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="px-5 py-2 rounded-full bg-brand-light text-brand-dark font-medium text-sm">All Plants</button>
+                <button class="px-5 py-2 rounded-full bg-brand-green/50 text-gray-300 hover:bg-brand-light hover:text-brand-dark transition text-sm">Indoor</button>
+                <button class="px-5 py-2 rounded-full bg-brand-green/50 text-gray-300 hover:bg-brand-light hover:text-brand-dark transition text-sm">Terrariums</button>
+                <button class="px-5 py-2 rounded-full bg-brand-green/50 text-gray-300 hover:bg-brand-light hover:text-brand-dark transition text-sm">Accessories</button>
+                <button class="px-5 py-2 rounded-full bg-brand-green/50 text-gray-300 hover:bg-brand-light hover:text-brand-dark transition text-sm">Gift Sets</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="pb-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                
+                <!-- Product 1 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=400&q=80" alt="Emerald Beauty" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 text-xs text-brand-light bg-brand-light/20 px-2 py-1 rounded-full">Bestseller</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Emerald Beauty</h3>
+                        <p class="text-gray-400 text-sm mb-3">Premium indoor plant</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$45.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=400&q=80" alt="Silver Whisper" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 text-xs text-amber-400 bg-amber-400/20 px-2 py-1 rounded-full">Premium</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Silver Whisper</h3>
+                        <p class="text-gray-400 text-sm mb-3">Elegant silver foliage</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$55.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1446071103084-c257b5f70672?w=400&q=80" alt="Velvet Leaf" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 text-xs text-rose-400 bg-rose-400/20 px-2 py-1 rounded-full">New</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Velvet Leaf</h3>
+                        <p class="text-gray-400 text-sm mb-3">Soft texture plant</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$38.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=400&q=80" alt="Monstera Deliciosa" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Monstera Deliciosa</h3>
+                        <p class="text-gray-400 text-sm mb-3">Tropical statement plant</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$65.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&q=80" alt="Glass Terrarium" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 text-xs text-cyan-400 bg-cyan-400/20 px-2 py-1 rounded-full">Limited</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Glass Terrarium</h3>
+                        <p class="text-gray-400 text-sm mb-3">Self-contained ecosystem</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$89.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" alt="Fiddle Leaf Fig" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Fiddle Leaf Fig</h3>
+                        <p class="text-gray-400 text-sm mb-3">Statement floor plant</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$120.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=400&q=80" alt="Ceramic Pot Set" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Ceramic Pot Set</h3>
+                        <p class="text-gray-400 text-sm mb-3">Handcrafted planters</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$35.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 8 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=400&q=80" alt="Snake Plant" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 text-xs text-brand-light bg-brand-light/20 px-2 py-1 rounded-full">Easy Care</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-serif text-lg text-white mb-1">Snake Plant</h3>
+                        <p class="text-gray-400 text-sm mb-3">Low maintenance air purifier</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-brand-light text-lg font-medium">$28.00</span>
+                            <button class="add-to-cart-btn px-4 py-2 border border-brand-light/30 text-brand-light rounded-lg text-sm hover:bg-brand-light hover:text-brand-dark transition">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-brand-light/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="text-2xl font-serif font-bold text-white">
+                        <span class="text-brand-light">EG</span>GAZO
+                    </a>
+                    <p class="text-gray-400 text-sm mt-4">Premium botanical specimens and artisan crafted terrariums.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-brand-light transition">Home</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Shop</a></li>
+                        <li><a href="about.html" class="hover:text-brand-light transition">About</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-light transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-4">Categories</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Indoor Plants</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Terrariums</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Accessories</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-4">Newsletter</h4>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Thank you!');">
+                        <input type="email" placeholder="Your email" required class="flex-1 px-3 py-2 bg-brand-green/50 border border-brand-light/20 rounded-lg text-sm text-white placeholder-gray-500">
+                        <button type="submit" class="px-4 py-2 bg-brand-light text-brand-dark rounded-lg text-sm font-medium hover:bg-brand-light/90 transition">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-brand-light/10 text-sm text-gray-500">
+                © 2024 Premium Flora. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

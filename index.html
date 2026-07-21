@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Premium Flora & Food - Temukan koleksi eksklusif tanaman botani langka dan terrarium buatan tangan.">
-    <title>Premium Flora & Food - Nature's Elegance</title>
+    <title>Home - Premium Flora & Food</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <script>
         tailwind.config = {
             theme: {
@@ -22,523 +23,244 @@
                     fontFamily: {
                         'serif': ['"Playfair Display"', 'serif'],
                         'sans': ['"Inter"', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'soft': '0 10px 40px -10px rgba(0,0,0,0.5)',
-                        'glow': '0 0 20px rgba(143, 185, 150, 0.2)',
-                        'product': '0 20px 40px rgba(0,0,0,0.4)',
                     }
                 }
             }
         }
     </script>
-    <style>
-        body {
-            background-color: #0a2316;
-            color: #e2e8f0;
-            overflow-x: hidden;
-        }
-
-        /* Glass Dome Effect */
-        .glass-dome {
-            position: relative;
-            z-index: 10;
-            background-color: rgba(27, 67, 42, 0.3);
-            border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 50% 50% 8% 8% / 55% 55% 8% 8%;
-            box-shadow: 
-                inset 0 0 60px rgba(255,255,255,0.05),
-                inset 0 -20px 40px rgba(0,0,0,0.2),
-                0 25px 50px rgba(0,0,0,0.4),
-                0 0 0 1px rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-        }
-
-        .glass-dome::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 10%;
-            right: 10%;
-            height: 1px;
-            background-color: rgba(255,255,255,0.3);
-        }
-
-        .glass-dome::after {
-            content: '';
-            position: absolute;
-            top: 10%;
-            left: 5%;
-            width: 30%;
-            height: 20%;
-            background-color: rgba(255,255,255,0.08);
-            border-radius: 50%;
-            filter: blur(5px);
-        }
-        
-        /* Pedestal */
-        .pedestal {
-            background-color: #1b432a;
-            border-top: 2px solid rgba(143, 185, 150, 0.4);
-            box-shadow: 
-                0 15px 30px rgba(0,0,0,0.5),
-                inset 0 2px 4px rgba(143, 185, 150, 0.1);
-        }
-
-        .pedestal-base {
-            background-color: #0f2a1a;
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.6),
-                inset 0 2px 4px rgba(143, 185, 150, 0.1);
-        }
-
-        /* Reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Product Card */
-        .product-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(143, 185, 150, 0.05);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-        .product-card:hover::before {
-            opacity: 1;
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-        }
-        .product-card img {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .product-card:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Image Container */
-        .product-image-container {
-            position: relative;
-            width: 100%;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 1rem 1rem 0 0;
-            background-color: rgba(27, 67, 42, 0.3);
-        }
-
-        .product-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        /* Shadow under product */
-        .product-shadow {
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 20px;
-            background-color: rgba(0,0,0,0.4);
-            filter: blur(8px);
-        }
-
-        /* Feature Image Container */
-        .feature-image-container {
-            position: relative;
-            width: 100%;
-            max-width: 320px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .feature-glass-dome {
-            position: relative;
-            width: 240px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-        }
-
-        .feature-glass-dome img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.3));
-        }
-
-        /* Glow effect behind hero image */
-        .hero-glow {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background-color: rgba(143, 185, 150, 0.1);
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-        }
-
-        /* Float animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-        .floating {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Pulse glow */
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(143, 185, 150, 0.2); }
-            50% { box-shadow: 0 0 40px rgba(143, 185, 150, 0.4); }
-        }
-        .pulse-glow {
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-    </style>
 </head>
-<body class="font-sans antialiased relative">
+<body class="font-sans antialiased">
 
     <!-- Navigation -->
-    <nav class="container mx-auto px-6 py-6 flex justify-between items-center relative z-20">
-        <a href="#" class="text-2xl font-serif font-bold tracking-wider text-white">
-            <span class="text-brand-light">EG</span>GAZO
-        </a>
-        
-        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-            <a href="#" class="hover:text-brand-light transition duration-300">Home</a>
-            <a href="#" class="hover:text-brand-light transition duration-300">Shop</a>
-            <a href="#" class="hover:text-brand-light transition duration-300">About</a>
-            <a href="#" class="hover:text-brand-light transition duration-300">Contact</a>
-        </div>
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-light/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="text-2xl font-serif font-bold tracking-wider text-white">
+                    <span class="text-brand-light">EG</span>GAZO
+                </a>
 
-        <div class="flex items-center space-x-4">
-            <button class="text-sm font-medium text-gray-300 hover:text-white hidden sm:block" aria-label="Akun Saya">My Account</button>
-            <button class="border border-brand-light/30 text-brand-light px-5 py-2 rounded-full hover:bg-brand-light hover:text-brand-dark transition duration-300" aria-label="Keranjang Belanja">
-                Cart (<span id="cart-count">0</span>)
-            </button>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link active text-brand-light font-medium">Home</a>
+                    <a href="shop.html" class="nav-link text-gray-300 hover:text-brand-light transition">Shop</a>
+                    <a href="about.html" class="nav-link text-gray-300 hover:text-brand-light transition">About</a>
+                    <a href="contact.html" class="nav-link text-gray-300 hover:text-brand-light transition">Contact</a>
+                </div>
+
+                <!-- Right Side -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-300 hover:text-white transition" aria-label="Search">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <button class="text-gray-300 hover:text-white transition hidden sm:block" aria-label="Account">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </button>
+                    <button class="border border-brand-light/30 text-brand-light px-4 py-2 rounded-full hover:bg-brand-light hover:text-brand-dark transition text-sm" id="cart-btn">
+                        Cart (<span id="cart-count">0</span>)
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-gray-300" id="mobile-menu-btn" aria-label="Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden mt-4 pb-4 border-t border-brand-light/10 pt-4" id="mobile-menu">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-brand-light font-medium">Home</a>
+                    <a href="shop.html" class="text-gray-300 hover:text-brand-light transition">Shop</a>
+                    <a href="about.html" class="text-gray-300 hover:text-brand-light transition">About</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-brand-light transition">Contact</a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <main>
-        <!-- Hero Section -->
-        <header class="container mx-auto px-6 pt-12 pb-24 relative z-20">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-                
+    <!-- Hero Section -->
+    <header class="pt-24 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
                 <!-- Hero Text -->
-                <div class="lg:w-1/2 text-center lg:text-left reveal">
+                <div class="lg:w-1/2 text-center lg:text-left">
                     <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white">
                         Premium <br>
                         <span class="text-brand-light">Flora & Food</span> <br>
                         Culture
                     </h1>
-                    
                     <p class="text-lg sm:text-xl font-medium mb-4 text-gray-200">Elevate your surroundings today</p>
                     <p class="text-sm text-gray-400 mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed">
-                        Discover our exclusive collection of rare botanical specimens and artisan crafted terrariums. Bring the timeless elegance of nature indoors with our meticulously curated selection.
+                        Discover our exclusive collection of rare botanical specimens and artisan crafted terrariums. Bring the timeless elegance of nature indoors.
                     </p>
-                    
-                    <button class="bg-brand-green/80 border border-brand-light/40 backdrop-blur-sm text-brand-light px-8 py-3 rounded-full hover:bg-brand-light hover:text-brand-dark transition duration-300 shadow-glow focus:outline-none focus:ring-2 focus:ring-brand-light">
+                    <a href="shop.html" class="inline-block bg-brand-green border border-brand-light/40 text-brand-light px-8 py-3 rounded-full hover:bg-brand-light hover:text-brand-dark transition shadow-lg">
                         Explore Collection
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Hero Image -->
-                <div class="lg:w-1/2 flex justify-center items-center relative reveal" style="transition-delay: 0.2s;">
-                    <div class="hero-glow"></div>
-                    
-                    <div class="relative flex flex-col items-center">
-                        <div class="glass-dome w-72 h-96 sm:w-80 sm:h-[28rem] lg:w-96 lg:h-[32rem] flex items-center justify-center p-6 floating pulse-glow">
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="glass-dome w-72 h-96 sm:w-80 sm:h-[28rem] lg:w-96 lg:h-[32rem] flex items-center justify-center p-6 floating">
                             <img 
                                 src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&q=85" 
-                                alt="Premium Terrarium dengan Tanaman Eksotis dalam Kubah Kaca"
+                                alt="Premium Terrarium dengan Tanaman Eksotis"
                                 class="w-full h-full object-contain rounded-lg"
-                                style="filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));"
-                                loading="eager"
                             >
                         </div>
-                        
-                        <div class="relative -mt-4 z-0">
-                            <div class="pedestal w-56 sm:w-64 lg:w-72 h-6 rounded-full"></div>
-                            <div class="pedestal w-64 sm:w-72 lg:w-80 h-4 rounded-full mt-1"></div>
-                            <div class="pedestal-base w-72 sm:w-80 lg:w-96 h-3 rounded-full mt-1"></div>
-                        </div>
+                        <div class="pedestal w-56 sm:w-64 lg:w-72 h-6 rounded-full -mt-4"></div>
+                        <div class="pedestal w-64 sm:w-72 lg:w-80 h-4 rounded-full mt-1"></div>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- Feature Section -->
-        <section class="container mx-auto px-6 py-20 relative z-20 border-t border-brand-light/10">
+    <!-- Feature Section -->
+    <section class="py-16 md:py-20 border-t border-brand-light/10">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-                
-                <!-- Feature Image -->
-                <div class="md:w-1/2 flex justify-center reveal">
-                    <div class="feature-image-container">
-                        <div class="feature-glass-dome glass-dome">
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="glass-dome w-56 h-72 sm:w-64 sm:h-80 flex items-center justify-center p-4">
                             <img 
                                 src="https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&q=85" 
-                                alt="Tanaman Monstera Deliciosa dengan Daun Hijau Lebar"
-                                loading="lazy"
+                                alt="Tanaman Monstera Deliciosa"
+                                class="w-full h-full object-contain"
                             >
                         </div>
                         <div class="pedestal w-40 h-5 rounded-full -mt-3"></div>
                         <div class="pedestal w-48 h-3 rounded-full mt-1"></div>
                     </div>
                 </div>
-
-                <!-- Feature Details -->
-                <div class="md:w-1/2 text-center md:text-left reveal" style="transition-delay: 0.2s;">
-                    <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-green border border-brand-light/30 mb-6 text-brand-light">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <div class="md:w-1/2 text-center md:text-left">
+                    <div class="w-12 h-12 rounded-full bg-brand-green border border-brand-light/30 flex items-center justify-center mb-6 text-brand-light">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                         </svg>
                     </div>
-                    
                     <h2 class="font-serif text-3xl lg:text-4xl font-bold mb-4 text-white">Premium Collection 2024</h2>
                     <p class="text-sm text-gray-400 mb-6 leading-relaxed">
-                        Immerse yourself in the delicate details of nature. Our premium selections are grown in controlled environments to ensure perfect symmetry and vibrant foliage. Experience the calming presence of true botanical art.
+                        Immerse yourself in the delicate details of nature. Our premium selections are grown in controlled environments to ensure perfect symmetry and vibrant foliage.
                     </p>
-                    
-                    <button class="bg-brand-green/50 border border-brand-light/20 text-brand-light px-6 py-3 rounded-lg hover:bg-brand-green transition duration-300 text-sm flex items-center gap-2 mx-auto md:mx-0 focus:outline-none focus:ring-2 focus:ring-brand-light">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <a href="shop.html" class="inline-flex items-center gap-2 bg-brand-green/50 border border-brand-light/20 text-brand-light px-6 py-3 rounded-lg hover:bg-brand-green transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
                         Add to Collection
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Product Grid Section -->
-        <section class="container mx-auto px-6 py-16 relative z-20" aria-labelledby="products-heading">
-            <h2 id="products-heading" class="sr-only">Koleksi Produk Kami</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                
-                <!-- Product 1 -->
-                <article class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden shadow-soft reveal">
-                    <div class="product-image-container">
-                        <img 
-                            src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=500&q=85" 
-                            alt="Tanaman Emerald Beauty - Pilihan Indoor Premium"
-                            loading="lazy"
-                        >
-                        <div class="product-shadow"></div>
-                        <span class="absolute top-4 left-4 bg-brand-light/20 backdrop-blur-sm text-brand-light text-xs px-3 py-1 rounded-full border border-brand-light/30">
-                            Bestseller
-                        </span>
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="font-serif text-xl text-white mb-2">Emerald Beauty</h3>
-                        <p class="text-brand-light text-lg font-medium mb-4">$45.00</p>
-                        <button class="w-full py-2.5 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
-                            View Details
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Product 2 -->
-                <article class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden shadow-soft reveal" style="transition-delay: 0.1s;">
-                    <div class="product-image-container">
-                        <img 
-                            src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=500&q=85" 
-                            alt="Tanaman Silver Whisper - Elegansi Perak untuk Ruangan"
-                            loading="lazy"
-                        >
-                        <div class="product-shadow"></div>
-                        <span class="absolute top-4 left-4 bg-amber-500/20 backdrop-blur-sm text-amber-400 text-xs px-3 py-1 rounded-full border border-amber-500/30">
-                            Premium
-                        </span>
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="font-serif text-xl text-white mb-2">Silver Whisper</h3>
-                        <p class="text-brand-light text-lg font-medium mb-4">$55.00</p>
-                        <button class="w-full py-2.5 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
-                            View Details
-                        </button>
-                    </div>
-                </article>
-
-                <!-- Product 3 -->
-                <article class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden shadow-soft reveal" style="transition-delay: 0.2s;">
-                    <div class="product-image-container">
-                        <img 
-                            src="https://images.unsplash.com/photo-1446071103084-c257b5f70672?w=500&q=85" 
-                            alt="Tanaman Velvet Leaf - Tekstur Lembut Premium"
-                            loading="lazy"
-                        >
-                        <div class="product-shadow"></div>
-                        <span class="absolute top-4 left-4 bg-rose-500/20 backdrop-blur-sm text-rose-400 text-xs px-3 py-1 rounded-full border border-rose-500/30">
-                            New
-                        </span>
-                    </div>
-                    <div class="p-6 text-center">
-                        <h3 class="font-serif text-xl text-white mb-2">Velvet Leaf</h3>
-                        <p class="text-brand-light text-lg font-medium mb-4">$38.00</p>
-                        <button class="w-full py-2.5 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
-                            View Details
-                        </button>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- Banner Section -->
-        <section class="container mx-auto px-6 py-12 relative z-20">
-            <div class="bg-brand-green/30 border border-brand-light/10 rounded-3xl p-8 lg:p-12 flex flex-col lg:flex-row items-center gap-8 reveal">
-                <div class="lg:w-2/3">
-                    <h3 class="font-serif text-2xl lg:text-3xl font-bold text-white mb-4">Koleksi Musim Ini</h3>
-                    <p class="text-gray-400 mb-6 max-w-xl">
-                        Jelajahi koleksi tanaman terbaru kami yang telah dipilih secara khusus untuk memenuhi standar tertinggi keindahan dan kualitas botanikal.
-                    </p>
-                    <button class="bg-brand-light text-brand-dark px-6 py-3 rounded-full font-medium hover:bg-white transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
-                        Lihat Semua Koleksi
-                    </button>
-                </div>
-                <div class="lg:w-1/3 flex justify-center">
-                    <div class="w-48 h-48 rounded-full bg-brand-green/50 flex items-center justify-center overflow-hidden border-2 border-brand-light/20">
-                        <img 
-                            src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&q=80" 
-                            alt="Koleksi Tanaman Musim Ini"
-                            class="w-full h-full object-cover"
-                        >
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="container mx-auto px-6 py-12 mt-12 border-t border-brand-light/10 relative z-20">
-        <div class="flex flex-col md:flex-row justify-between items-end gap-8">
-            
-            <div class="md:w-1/2 reveal">
-                <div class="mb-6 opacity-70">
-                    <svg class="w-10 h-10 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                    </svg>
-                </div>
-                <h4 class="font-serif text-xl font-bold text-white mb-2">Premium Flora</h4>
-                <p class="text-xs text-gray-400 max-w-sm mb-4">
-                    Subscribe to our newsletter for exclusive offers, botanical care tips, and early access to rare specimen releases.
-                </p>
-                <form class="flex flex-col sm:flex-row gap-2" onsubmit="event.preventDefault(); alert('Terima kasih! Anda berlangganan.');">
-                    <input 
-                        type="email" 
-                        placeholder="Enter your email" 
-                        required
-                        class="px-4 py-2.5 bg-brand-green/50 border border-brand-light/20 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-light flex-1"
-                        aria-label="Email untuk newsletter"
-                    >
-                    <button type="submit" class="px-6 py-2.5 bg-brand-light text-brand-dark rounded-lg text-sm font-medium hover:bg-brand-light/90 transition duration-300 whitespace-nowrap">
-                        Subscribe
-                    </button>
-                </form>
-            </div>
-
-            <div class="md:w-1/2 flex flex-col items-end reveal" style="transition-delay: 0.1s;">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-sm text-gray-400">Settings</span>
-                    <button class="w-10 h-10 rounded-full bg-brand-green flex items-center justify-center border border-brand-light/20 text-brand-light hover:bg-brand-light hover:text-brand-dark transition focus:outline-none focus:ring-2 focus:ring-brand-light" aria-label="Pengaturan">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <div class="text-right mb-6">
-                    <p class="text-xs text-gray-500 mb-1">Current Collections Available</p>
-                    <div class="font-serif text-3xl lg:text-4xl font-bold text-white flex items-center justify-end gap-2">
-                        07<span class="text-brand-light">.</span>20<span class="text-brand-light text-xl">.3</span>
-                        <div class="w-7 h-7 rounded-full bg-brand-light/20 flex items-center justify-center text-brand-light ml-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex gap-3">
-                    <button class="bg-brand-green border border-brand-light/20 text-brand-light px-5 py-2 rounded-md text-xs hover:bg-brand-light hover:text-brand-dark transition focus:outline-none focus:ring-2 focus:ring-brand-light">
-                        Share
-                    </button>
-                    <button class="bg-transparent border border-gray-600 text-gray-400 px-5 py-2 rounded-md text-xs hover:text-white transition focus:outline-none focus:ring-2 focus:ring-gray-400">
-                        More
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
-        
-        <div class="text-center mt-12 pt-6 border-t border-brand-light/5 text-xs text-gray-600 reveal" style="transition-delay: 0.3s;">
-            © 2024 Premium Flora. All rights reserved.
+    </section>
+
+    <!-- Products Preview -->
+    <section class="py-16 border-t border-brand-light/10">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-white mb-4">Featured Products</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Discover our handpicked selection of premium botanical specimens</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=500&q=85" alt="Emerald Beauty" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-brand-light bg-brand-light/10 px-2 py-1 rounded-full">Bestseller</span>
+                        <h3 class="font-serif text-xl text-white mt-3 mb-2">Emerald Beauty</h3>
+                        <p class="text-brand-light text-lg font-medium">$45.00</p>
+                        <button class="w-full mt-4 py-2.5 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1463936575829-25148e1db1b8?w=500&q=85" alt="Silver Whisper" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-amber-400 bg-amber-400/10 px-2 py-1 rounded-full">Premium</span>
+                        <h3 class="font-serif text-xl text-white mt-3 mb-2">Silver Whisper</h3>
+                        <p class="text-brand-light text-lg font-medium">$55.00</p>
+                        <button class="w-full mt-4 py-2.5 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl overflow-hidden">
+                    <div class="h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1446071103084-c257b5f70672?w=500&q=85" alt="Velvet Leaf" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs text-rose-400 bg-rose-400/10 px-2 py-1 rounded-full">New</span>
+                        <h3 class="font-serif text-xl text-white mt-3 mb-2">Velvet Leaf</h3>
+                        <p class="text-brand-light text-lg font-medium">$38.00</p>
+                        <button class="w-full mt-4 py-2.5 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="shop.html" class="inline-block border border-brand-light text-brand-light px-8 py-3 rounded-full hover:bg-brand-light hover:text-brand-dark transition">
+                    View All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 mt-12 border-t border-brand-light/10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <a href="index.html" class="text-2xl font-serif font-bold text-white">
+                        <span class="text-brand-light">EG</span>GAZO
+                    </a>
+                    <p class="text-gray-400 text-sm mt-4">Premium botanical specimens and artisan crafted terrariums for your indoor sanctuary.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="index.html" class="hover:text-brand-light transition">Home</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Shop</a></li>
+                        <li><a href="about.html" class="hover:text-brand-light transition">About</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-light transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-4">Categories</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Indoor Plants</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Terrariums</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Accessories</a></li>
+                        <li><a href="shop.html" class="hover:text-brand-light transition">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-medium mb-4">Newsletter</h4>
+                    <p class="text-gray-400 text-sm mb-4">Subscribe for exclusive offers and updates.</p>
+                    <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+                        <input type="email" placeholder="Your email" required class="flex-1 px-3 py-2 bg-brand-green/50 border border-brand-light/20 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-1 focus:ring-brand-light">
+                        <button type="submit" class="px-4 py-2 bg-brand-light text-brand-dark rounded-lg text-sm font-medium hover:bg-brand-light/90 transition">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="text-center pt-8 border-t border-brand-light/10 text-sm text-gray-500">
+                © 2024 Premium Flora. All rights reserved.
+            </div>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-
-            const revealOnScroll = () => {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 80;
-
-                reveals.forEach((reveal) => {
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                    }
-                });
-            };
-
-            revealOnScroll();
-            window.addEventListener('scroll', revealOnScroll, { passive: true });
-
-            let cartCount = 0;
-            const cartCountEl = document.getElementById('cart-count');
-            
-            document.querySelectorAll('.product-card button').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    if (e.target.textContent.includes('View Details')) {
-                        cartCount++;
-                        cartCountEl.textContent = cartCount;
-                        
-                        const cartBtn = document.querySelector('button[aria-label*="Keranjang"]');
-                        cartBtn.classList.add('scale-110');
-                        setTimeout(() => cartBtn.classList.remove('scale-110'), 200);
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
