@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Flora & Food - Temukan koleksi eksklusif tanaman botani langka dan terrarium buatan tangan.">
+    <title>Premium Flora & Food - Nature's Elegance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0a2316',
+                        'brand-green': '#1b432a',
+                        'brand-light': '#8fb996',
+                        'brand-text': '#e2e8f0',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Inter"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.5)',
+                        'glow': '0 0 20px rgba(143, 185, 150, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a2316;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(27, 67, 42, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 85% 20%, rgba(27, 67, 42, 0.3) 0%, transparent 35%);
+        }
+
+        .glass-dome {
+            position: relative;
+            z-index: 10;
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.03) 100%);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 50% 50% 10% 10% / 60% 60% 10% 10%;
+            box-shadow: 
+                inset 0 0 30px rgba(255,255,255,0.05),
+                0 0 40px rgba(0,0,0,0.3);
+        }
+        
+        .pedestal {
+            background: linear-gradient(to bottom, #1b432a, #0a2316);
+            border-top: 2px solid rgba(143, 185, 150, 0.3);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .leaf-overlay {
+            position: fixed;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.6;
+            filter: blur(2px);
+        }
+        .leaf-top-right {
+            top: -5%; right: -5%;
+            width: 300px; height: 300px;
+            background: radial-gradient(ellipse at center, rgba(34, 139, 34, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: rotate(-45deg);
+        }
+        .leaf-bottom-left {
+            bottom: -10%; left: -5%;
+            width: 400px; height: 400px;
+            background: radial-gradient(ellipse at center, rgba(34, 139, 34, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+        }
+        .product-card img {
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased relative">
+
+    <div class="leaf-overlay leaf-top-right" aria-hidden="true"></div>
+    <div class="leaf-overlay leaf-bottom-left" aria-hidden="true"></div>
+
+    <nav class="container mx-auto px-6 py-6 flex justify-between items-center relative z-20">
+        <a href="#" class="text-2xl font-serif font-bold tracking-wider text-white">
+            <span class="text-brand-light">EG</span>GAZO
+        </a>
+        
+        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
+            <a href="#" class="hover:text-brand-light transition duration-300">Home</a>
+            <a href="#" class="hover:text-brand-light transition duration-300">Shop</a>
+            <a href="#" class="hover:text-brand-light transition duration-300">About</a>
+            <a href="#" class="hover:text-brand-light transition duration-300">Contact</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <button class="text-sm font-medium text-gray-300 hover:text-white hidden sm:block" aria-label="Akun Saya">My Account</button>
+            <button class="border border-brand-light/30 text-brand-light px-5 py-2 rounded-full hover:bg-brand-light hover:text-brand-dark transition duration-300" aria-label="Keranjang Belanja">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <header class="container mx-auto px-6 pt-12 pb-24 relative z-20">
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 reveal">
+                    <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white">
+                        Premium <br>
+                        <span class="text-brand-light">Flora & Food</span> <br>
+                        Culture
+                    </h1>
+                    
+                    <p class="text-lg sm:text-xl font-medium mb-4 text-gray-200">Elevate your surroundings today</p>
+                    <p class="text-sm text-gray-400 mb-8 max-w-md leading-relaxed">
+                        Discover our exclusive collection of rare botanical specimens and artisan crafted terrariums. Bring the timeless elegance of nature indoors with our meticulously curated selection.
+                    </p>
+                    
+                    <button class="bg-brand-green/80 border border-brand-light/40 backdrop-blur-sm text-brand-light px-8 py-3 rounded-full hover:bg-brand-light hover:text-brand-dark transition duration-300 shadow-glow focus:outline-none focus:ring-2 focus:ring-brand-light">
+                        Explore Collection
+                    </button>
+                </div>
+
+                <div class="lg:w-1/2 flex justify-center relative reveal" style="transition-delay: 0.2s;">
+                    <div class="absolute inset-0 bg-brand-light opacity-5 blur-3xl rounded-full"></div>
+                    
+                    <div class="relative flex flex-col items-center floating">
+                        <div class="glass-dome w-64 h-80 sm:w-80 sm:h-96 flex items-center justify-center p-4">
+                            <img 
+                                src="https://images.unsplash.com/photo-1614594975525-e45190c55d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                                alt="Premium Plant in Glass Dome - Elegant botanical specimen" 
+                                class="w-full h-full object-contain drop-shadow-2xl rounded-lg"
+                                loading="eager"
+                            >
+                        </div>
+                        <div class="pedestal w-48 sm:w-64 h-8 rounded-full mt-[-20px] relative z-0"></div>
+                        <div class="pedestal w-56 sm:w-72 h-4 rounded-full mt-1 relative z-0"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="container mx-auto px-6 py-20 relative z-20 border-t border-brand-light/10">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 flex justify-center reveal">
+                    <div class="relative flex flex-col items-center scale-90">
+                        <div class="glass-dome w-56 h-72 flex items-center justify-center p-4">
+                            <img 
+                                src="https://images.unsplash.com/photo-1599598425947-330026296904?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
+                                alt="Rare Fern Specimen - Premium botanical detail" 
+                                class="w-full h-full object-contain drop-shadow-xl rounded-lg"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="pedestal w-40 h-6 rounded-full mt-[-15px] relative z-0"></div>
+                        <div class="pedestal w-48 h-3 rounded-full mt-1 relative z-0"></div>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2 reveal" style="transition-delay: 0.2s;">
+                    <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand-green border border-brand-light/30 mb-6 text-brand-light">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    </div>
+                    
+                    <h2 class="font-serif text-3xl font-bold mb-4 text-white">Premium Collection 2024</h2>
+                    <p class="text-sm text-gray-400 mb-6 leading-relaxed">
+                        Immerse yourself in the delicate details of nature. Our premium selections are grown in controlled environments to ensure perfect symmetry and vibrant foliage. Experience the calming presence of true botanical art.
+                    </p>
+                    
+                    <button class="bg-brand-green/50 border border-brand-light/20 text-brand-light px-6 py-2 rounded-lg hover:bg-brand-green transition duration-300 text-sm flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-brand-light">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        Add to Collection
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mx-auto px-6 py-16 relative z-20" aria-labelledby="products-heading">
+            <h2 id="products-heading" class="sr-only">Our Products</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <article class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl p-6 flex flex-col items-center shadow-soft group reveal">
+                    <div class="h-48 w-full flex justify-center mb-6 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1620127682229-33388a6d70eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                            alt="Emerald Beauty - Premium indoor plant" 
+                            class="h-full object-contain drop-shadow-xl rounded-lg"
+                            loading="lazy"
+                        >
+                        <div class="absolute bottom-0 w-24 h-4 bg-black/40 rounded-full blur-sm"></div>
+                    </div>
+                    <h3 class="font-serif text-lg text-white mb-2">Emerald Beauty</h3>
+                    <p class="text-brand-light text-sm mb-4">$45.00</p>
+                    <button class="w-full py-2 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
+                        View Details
+                    </button>
+                </article>
+
+                <article class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl p-6 flex flex-col items-center shadow-soft group reveal" style="transition-delay: 0.1s;">
+                    <div class="h-48 w-full flex justify-center mb-6 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1597405206275-6548df80c109?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                            alt="Silver Whisper - Elegant silver plant" 
+                            class="h-full object-contain drop-shadow-xl rounded-lg"
+                            loading="lazy"
+                        >
+                        <div class="absolute bottom-0 w-24 h-4 bg-black/40 rounded-full blur-sm"></div>
+                    </div>
+                    <h3 class="font-serif text-lg text-white mb-2">Silver Whisper</h3>
+                    <p class="text-brand-light text-sm mb-4">$55.00</p>
+                    <button class="w-full py-2 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
+                        View Details
+                    </button>
+                </article>
+
+                <article class="product-card bg-brand-green/30 border border-brand-light/10 rounded-2xl p-6 flex flex-col items-center shadow-soft group reveal" style="transition-delay: 0.2s;">
+                    <div class="h-48 w-full flex justify-center mb-6 relative">
+                        <img 
+                            src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
+                            alt="Velvet Leaf - Premium velvet texture plant" 
+                            class="h-full object-contain drop-shadow-xl rounded-lg"
+                            loading="lazy"
+                        >
+                        <div class="absolute bottom-0 w-24 h-4 bg-black/40 rounded-full blur-sm"></div>
+                    </div>
+                    <h3 class="font-serif text-lg text-white mb-2">Velvet Leaf</h3>
+                    <p class="text-brand-light text-sm mb-4">$38.00</p>
+                    <button class="w-full py-2 border border-brand-light/20 rounded-lg text-sm text-gray-300 hover:bg-brand-light hover:text-brand-dark transition duration-300 focus:outline-none focus:ring-2 focus:ring-brand-light">
+                        View Details
+                    </button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container mx-auto px-6 py-12 mt-12 border-t border-brand-light/10 relative z-20">
+        <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+            <div class="md:w-1/2 reveal">
+                <div class="mb-6 opacity-70">
+                    <svg class="w-10 h-10 text-brand-light" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                </div>
+                <h4 class="font-serif text-xl font-bold text-white mb-2">Premium Flora</h4>
+                <p class="text-xs text-gray-400 max-w-sm mb-4">
+                    Subscribe to our newsletter for exclusive offers, botanical care tips, and early access to rare specimen releases.
+                </p>
+                <form class="flex gap-2" onsubmit="event.preventDefault(); alert('Terima kasih! Anda berlangganan.');">
+                    <input 
+                        type="email" 
+                        placeholder="Enter your email" 
+                        required
+                        class="px-4 py-2 bg-brand-green/50 border border-brand-light/20 rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand-light"
+                        aria-label="Email untuk newsletter"
+                    >
+                    <button type="submit" class="px-4 py-2 bg-brand-light text-brand-dark rounded-lg text-sm font-medium hover:bg-brand-light/80 transition duration-300">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+
+            <div class="md:w-1/2 flex flex-col items-end reveal" style="transition-delay: 0.1s;">
+                <div class="flex items-center gap-4 mb-6">
+                    <span class="text-sm text-gray-400">Settings</span>
+                    <button class="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center border border-brand-light/20 text-brand-light hover:bg-brand-light hover:text-brand-dark transition focus:outline-none focus:ring-2 focus:ring-brand-light" aria-label="Pengaturan">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </button>
+                </div>
+                
+                <div class="text-right mb-6">
+                    <p class="text-xs text-gray-500 mb-1">Current Collections Available</p>
+                    <div class="font-serif text-3xl font-bold text-white flex items-center justify-end gap-2">
+                        07<span class="text-brand-light">.</span>20<span class="text-brand-light text-xl">.3</span>
+                        <div class="w-6 h-6 rounded-full bg-brand-light/20 flex items-center justify-center text-brand-light ml-2">
+                            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button class="bg-brand-green border border-brand-light/20 text-brand-light px-4 py-1.5 rounded-md text-xs hover:bg-brand-light hover:text-brand-dark transition focus:outline-none focus:ring-2 focus:ring-brand-light">Share</button>
+                    <button class="bg-transparent border border-gray-600 text-gray-400 px-4 py-1.5 rounded-md text-xs hover:text-white transition focus:outline-none focus:ring-2 focus:ring-gray-400">More</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 pt-6 border-t border-brand-light/5 text-xs text-gray-600 reveal" style="transition-delay: 0.3s;">
+            © 2024 Premium Flora. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = () => {
+                const windowHeight = window.innerHeight;
+                const elementVisible = 80;
+
+                reveals.forEach((reveal) => {
+                    const elementTop = reveal.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveal.classList.add('active');
+                    }
+                });
+            };
+
+            revealOnScroll();
+            window.addEventListener('scroll', revealOnScroll, { passive: true });
+
+            // Simple cart functionality
+            let cartCount = 0;
+            const cartCountEl = document.getElementById('cart-count');
+            
+            document.querySelectorAll('.product-card button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (e.target.textContent.includes('View Details')) {
+                        cartCount++;
+                        cartCountEl.textContent = cartCount;
+                        
+                        // Visual feedback
+                        const cartBtn = document.querySelector('button[aria-label*="Keranjang"]');
+                        cartBtn.classList.add('scale-110');
+                        setTimeout(() => cartBtn.classList.remove('scale-110'), 200);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
